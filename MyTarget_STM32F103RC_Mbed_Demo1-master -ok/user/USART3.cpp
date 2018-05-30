@@ -12,6 +12,7 @@ unsigned char U3RecLen = 0;
 unsigned char U3RecBuf[U3RECLENS] = {0};
 unsigned char U3RxBuf[U3RECLENS] = {0};
 Mutex U3txMutex;
+unsigned char U3SendBuf[U3RECLENS] = {0x01,0x05,0x00,0xFE,0x00,0x00,0xAC,0x3A};
 
 uint32_t Init_U3_485(void)
 {
@@ -89,7 +90,7 @@ uint32_t TX_U3_485(unsigned char *TxData, int length)
 //		U3_485.getc();
 	
 	USART3EN = 1;
-	Thread::wait(3);
+	Thread::wait(5);
 	for(;i<length;i++)
 	{
 		while(U3_485.writeable() == 0);
@@ -117,7 +118,9 @@ void USART3_Thread(void const *args)
 		if(U3RxBuf[2] != 0x00 || U3RxBuf[4] != 0xFF || U3RxBuf[5] != 0x00)
 			return;
 		ValveCtrl(U3RxBuf[3]);
-		TX_U3_485(U3RxBuf,U3RECLENS);
+//		Thread::wait(200);
+		U3SendBuf[0] = SlaveAddr;
+		TX_U3_485(U3SendBuf,U3RECLENS);//U3RxBuf
 		U3_485.attach(&RX_U3_485,SerialBase::RxIrq);
 	}
 }

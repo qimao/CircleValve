@@ -50,20 +50,6 @@ void ValveCtrl(unsigned char valve)
 	switch(valve)
 	{
 		case 0:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
-			break;
-		case 1:
 			PWM1 = 1;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -77,7 +63,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 2:
+		case 1:
 			PWM1 = 0;
 			PWM2 = 1;
 			PWM3 = 0;
@@ -91,7 +77,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 3:
+		case 2:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 1;
@@ -105,7 +91,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 4:
+		case 3:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -119,7 +105,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 5:
+		case 4:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -133,7 +119,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 6:
+		case 5:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -147,7 +133,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 7:
+		case 6:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -161,7 +147,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 8:
+		case 7:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -175,7 +161,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 9:
+		case 8:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -189,7 +175,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 10:
+		case 9:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -203,7 +189,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 0;
 			PWM12 = 0;
 			break;
-		case 11:
+		case 10:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -217,7 +203,7 @@ void ValveCtrl(unsigned char valve)
 			PWM11 = 1;
 			PWM12 = 0;
 			break;
-		case 12:
+		case 11:
 			PWM1 = 0;
 			PWM2 = 0;
 			PWM3 = 0;
@@ -230,6 +216,20 @@ void ValveCtrl(unsigned char valve)
 			PWM10 = 0;
 			PWM11 = 0;
 			PWM12 = 1;
+			break;
+		case 0x0E:
+			PWM1 = 0;
+			PWM2 = 0;
+			PWM3 = 0;
+			PWM4 = 0;
+			PWM5 = 0;
+			PWM6 = 0;
+			PWM7 = 0;
+			PWM8 = 0;
+			PWM9 = 0;
+			PWM10 = 0;
+			PWM11 = 0;
+			PWM12 = 0;
 			break;
 		default:
 			break;
