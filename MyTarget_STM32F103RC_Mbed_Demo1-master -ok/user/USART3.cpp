@@ -12,7 +12,7 @@ unsigned char U3RecLen = 0;
 unsigned char U3RecBuf[U3RECLENS] = {0};
 unsigned char U3RxBuf[U3RECLENS] = {0};
 Mutex U3txMutex;
-unsigned char U3SendBuf[U3RECLENS] = {0x01,0x05,0x00,0xFE,0x00,0x00,0xAC,0x3A};
+unsigned char U3SendBuf[U3RECLENS] = {SlaveAddr,ModbusCmd5,0x00,0xFE,0x00,0x00,0xAC,0x3A};
 
 uint32_t Init_U3_485(void)
 {
@@ -113,14 +113,15 @@ void USART3_Thread(void const *args)
 		Thread::signal_wait(0x01);
 		U3_485.attach(NULL,SerialBase::RxIrq);
 		crc16tem = crc16(U3RxBuf,U3RECLENS-2);
-		if((U3RxBuf[U3RECLENS-2] != (unsigned char)((crc16tem >> 8 )& 0x00FF)) || (U3RxBuf[U3RECLENS-1] != (unsigned char)(crc16tem & 0x00FF)))
-      return;
-		if(U3RxBuf[2] != 0x00 || U3RxBuf[4] != 0xFF || U3RxBuf[5] != 0x00)
-			return;
-		ValveCtrl(U3RxBuf[3]);
-//		Thread::wait(200);
-		U3SendBuf[0] = SlaveAddr;
-		TX_U3_485(U3SendBuf,U3RECLENS);//U3RxBuf
+		if((U3RxBuf[U3RECLENS-2] == (unsigned char)((crc16tem >> 8 )& 0x00FF)) && (U3RxBuf[U3RECLENS-1] == (unsigned char)(crc16tem & 0x00FF)))
+    {
+			if(U3RxBuf[2] != 0x00 || U3RxBuf[4] != 0xFF || U3RxBuf[5] != 0x00);
+			else
+			{
+				ValveCtrl(U3RxBuf[3]);
+				TX_U3_485(U3SendBuf,U3RECLENS);//U3RxBuf
+			}
+		}
 		U3_485.attach(&RX_U3_485,SerialBase::RxIrq);
 	}
 }
