@@ -3,8 +3,10 @@
 #include "mbed.h"
  
 #define U3RECLENS 8
-#define SlaveAddr 0x06	//板子地址 根据不同板子设置不同的地址
+#define SlaveAddr 0x01	//板子地址 根据不同板子设置不同的地址
 #define ModbusCmd5	0x05
+#define ModbusCmd4	0x04
+#define ModbusCmd4Len 33
 
 extern unsigned char U3RxBuf[U3RECLENS];
 

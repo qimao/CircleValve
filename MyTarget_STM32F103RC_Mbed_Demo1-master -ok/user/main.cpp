@@ -20,6 +20,7 @@ DigitalOut PWM11(PWM_OUT11);
 DigitalOut PWM12(PWM_OUT12);
 
 Thread thread_u3;
+unsigned int OnOffFlag = 0;
 
 int main()
 {
@@ -45,191 +46,103 @@ int main()
   }
 }
 
-void ValveCtrl(unsigned char valve)
+/*
+valve:待操作的环阀通道，即通道地址
+onoff:0xFF 或者 0x00
+*/
+void ValveCtrl(unsigned char valve,unsigned char onoff)
 {
 	switch(valve)
 	{
 		case 0:
-			PWM1 = 1;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM1 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<0);
+		else OnOffFlag &= ~(0x0001<<0);
 			break;
 		case 1:
-			PWM1 = 0;
-			PWM2 = 1;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM2 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<1);
+		else OnOffFlag &= ~(0x0001<<1);
 			break;
 		case 2:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 1;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM3 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<2);
+		else OnOffFlag &= ~(0x0001<<2);
 			break;
 		case 3:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 1;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM4 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<3);
+		else OnOffFlag &= ~(0x0001<<3);
 			break;
 		case 4:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 1;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM5 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<4);
+		else OnOffFlag &= ~(0x0001<<4);
 			break;
 		case 5:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 1;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM6 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<5);
+		else OnOffFlag &= ~(0x0001<<5);
 			break;
 		case 6:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 1;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM7 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<6);
+		else OnOffFlag &= ~(0x0001<<6);
 			break;
 		case 7:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 1;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM8 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<7);
+		else OnOffFlag &= ~(0x0001<<7);
 			break;
 		case 8:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 1;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM9 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<8);
+		else OnOffFlag &= ~(0x0001<<8);
 			break;
 		case 9:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 1;
-			PWM11 = 0;
-			PWM12 = 0;
+			PWM10 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<9);
+		else OnOffFlag &= ~(0x0001<<9);
 			break;
 		case 10:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 1;
-			PWM12 = 0;
+			PWM11 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<10);
+		else OnOffFlag &= ~(0x0001<<10);
 			break;
 		case 11:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 1;
+			PWM12 = (onoff>>7);
+		if(onoff == 0xFF)
+			OnOffFlag |= (0x0001<<11);
+		else OnOffFlag &= ~(0x0001<<11);
 			break;
-		case 0x0E:
-			PWM1 = 0;
-			PWM2 = 0;
-			PWM3 = 0;
-			PWM4 = 0;
-			PWM5 = 0;
-			PWM6 = 0;
-			PWM7 = 0;
-			PWM8 = 0;
-			PWM9 = 0;
-			PWM10 = 0;
-			PWM11 = 0;
-			PWM12 = 0;
+		case 0x11:
+			if(onoff == 0xFF)
+			{
+				PWM1 = 0;
+				PWM2 = 0;
+				PWM3 = 0;
+				PWM4 = 0;
+				PWM5 = 0;
+				PWM6 = 0;
+				PWM7 = 0;
+				PWM8 = 0;
+				PWM9 = 0;
+				PWM10 = 0;
+				PWM11 = 0;
+				PWM12 = 0;
+				OnOffFlag = 0;
+			}
 			break;
 		default:
 			break;

@@ -12,11 +12,11 @@ unsigned char U3RecLen = 0;
 unsigned char U3RecBuf[U3RECLENS] = {0};
 unsigned char U3RxBuf[U3RECLENS] = {0};
 Mutex U3txMutex;
-unsigned char U3SendBuf[U3RECLENS] = {0x01,0x05,0x00,0xFE,0x00,0x00,0xAC,0x3A};
+unsigned char U3SendBuf[ModbusCmd4Len] = {SlaveAddr,ModbusCmd4,0x1C};
 
 uint32_t Init_U3_485(void)
 {
-	U3_485.baud(9600);
+	U3_485.baud(57600);
 	U3_485.format(8,SerialBase::None,1);
 	USART3EN = 0;
 	USART3->CR1 |= 1<<5;       //RXNE interrupt enable
@@ -38,7 +38,7 @@ static void RX_U3_485(void)
 		{
 			if(U3RecLen > 1)
 			{
-				if(U3RecBuf[1] == ModbusCmd5)
+				if((U3RecBuf[1] == ModbusCmd5) || (U3RecBuf[1] == ModbusCmd4))
 				{
 					if(U3RecLen >= U3RECLENS)
 					{
@@ -90,7 +90,7 @@ uint32_t TX_U3_485(unsigned char *TxData, int length)
 //		U3_485.getc();
 	
 	USART3EN = 1;
-	Thread::wait(5);
+	Thread::wait(3);
 	for(;i<length;i++)
 	{
 		while(U3_485.writeable() == 0);
@@ -113,14 +113,33 @@ void USART3_Thread(void const *args)
 		Thread::signal_wait(0x01);
 		U3_485.attach(NULL,SerialBase::RxIrq);
 		crc16tem = crc16(U3RxBuf,U3RECLENS-2);
-		if((U3RxBuf[U3RECLENS-2] != (unsigned char)((crc16tem >> 8 )& 0x00FF)) || (U3RxBuf[U3RECLENS-1] != (unsigned char)(crc16tem & 0x00FF)))
-      return;
-		if(U3RxBuf[2] != 0x00 || U3RxBuf[4] != 0xFF || U3RxBuf[5] != 0x00)
-			return;
-		ValveCtrl(U3RxBuf[3]);
-//		Thread::wait(200);
-		U3SendBuf[0] = SlaveAddr;
-		TX_U3_485(U3SendBuf,U3RECLENS);//U3RxBuf
+		if(U3RxBuf[2] == 0x00)
+		{
+			if((U3RxBuf[U3RECLENS-2] == (unsigned char)((crc16tem >> 8 )& 0x00FF)) && (U3RxBuf[U3RECLENS-1] == (unsigned char)(crc16tem & 0x00FF)))
+			{
+				if(U3RxBuf[1] == ModbusCmd5)
+				{
+					if((U3RxBuf[3] == 0x11) && (U3RxBuf[4] == 0x00));
+					else
+					{
+						ValveCtrl(U3RxBuf[3],U3RxBuf[4]);
+						TX_U3_485(U3RxBuf,U3RECLENS);
+					}
+				}
+				else if(U3RxBuf[1] == ModbusCmd4)
+				{
+					if((U3RxBuf[3] == 0x0A) && (U3RxBuf[4] == 0x00) && (U3RxBuf[5] == 0x01))//01 03 00 0A 00 01 xx xx
+					{
+						U3SendBuf[25] = (unsigned char)((OnOffFlag>>8) & 0xFF);
+						U3SendBuf[26] = (unsigned char)(OnOffFlag & 0xFF);
+						crc16tem = crc16(U3SendBuf,31);
+						U3SendBuf[31] = (unsigned char)((crc16tem >> 8 ) & 0x0FF);
+						U3SendBuf[32] = (unsigned char)(crc16tem & 0x0FF);
+						TX_U3_485(U3SendBuf,ModbusCmd4Len);
+					}
+				}
+			}
+		}
 		U3_485.attach(&RX_U3_485,SerialBase::RxIrq);
 	}
 }
