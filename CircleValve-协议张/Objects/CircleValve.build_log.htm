@@ -1,0 +1,119 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.20.0.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: m mzc, delin, LIC=MPP8T-RUWSF-9G270-BC2UA-FB8KG-T9E7S
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.20
+Toolchain Path:  D:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 2 (build 183)
+Assembler:       Armasm.exe V5.06 update 2 (build 183)
+Linker/Locator:  ArmLink.exe V5.06 update 2 (build 183)
+Library Manager: ArmAr.exe V5.06 update 2 (build 183)
+Hex Converter:   FromElf.exe V5.06 update 2 (build 183)
+CPU DLL:         SARMCM3.DLL V5.20
+Dialog DLL:      DARMSTM.DLL V1.66.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.20.0
+Dialog DLL:      TARMSTM.DLL V1.65.0.0
+ 
+<h2>Project:</h2>
+C:\Users\Administrator\Desktop\CircleValve\CircleValve.uvprojx
+Project File Date:  07/03/2018
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 2 (build 183)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Target 1'
+".\Objects\CircleValve.axf" - 0 Error(s), 0 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.3.0.pack
+                ::CMSIS:RTOS:1.0.0 (API)
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: RTOS Version: 1.0.0
+   * Component: CORE Version: 5.1.1
+   * Component: Keil RTX Version: 4.81.1
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.2.0.pack
+                Keil::Device:StdPeriph Drivers:Framework:3.5.1
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+   * Component: Framework Version: 3.5.1
+   * Component: RCC Version: 3.5.0
+   * Component: Startup Version: 1.0.0
+   * Component: GPIO Version: 3.5.0
+   * Component: IWDG Version: 3.5.0
+   * Component: USART Version: 3.5.0
+   * Component: GPIO Version: 1.3
+
+<h2>Collection of Component include folders:</h2>
+  C:\Users\Administrator\Desktop\CircleValve\RTE
+  C:\Users\Administrator\Desktop\CircleValve\RTE\Device\STM32F103C8
+  D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include
+  D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\RTOS\RTX\INC
+  D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+  D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\StdPeriph_Driver\inc
+  D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\RTE_Driver
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ::CMSIS:RTOS:1.0.0 (API)
+
+   * Component: ARM::CMSIS:CORE:5.1.1
+
+   * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.1
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+
+   * Component: Keil::Device:StdPeriph Drivers:Framework:3.5.1
+      Source file:   Device\StdPeriph_Driver\src\misc.c
+      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_it.c
+      Include file:  Device\StdPeriph_Driver\inc\misc.h
+      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
+      Include file:  Device\StdPeriph_Driver\templates\stm32f10x_it.h
+
+   * Component: Keil::Device:StdPeriph Drivers:RCC:3.5.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f10x_rcc.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_rcc.h
+
+   * Component: Keil::Device:Startup:1.0.0
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+      Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\system_stm32f10x.c
+      Source file:   Device\Source\ARM\startup_stm32f10x_md.s
+
+   * Component: Keil::Device:StdPeriph Drivers:GPIO:3.5.0
+      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_gpio.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f10x_gpio.c
+
+   * Component: Keil::Device:StdPeriph Drivers:IWDG:3.5.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f10x_iwdg.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_iwdg.h
+
+   * Component: Keil::Device:StdPeriph Drivers:USART:3.5.0
+      Source file:   Device\StdPeriph_Driver\src\stm32f10x_usart.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_usart.h
+
+   * Component: Keil::Device:GPIO:1.3
+      Include file:  RTE_Driver\GPIO_STM32F10x.h
+      Source file:   RTE_Driver\GPIO_STM32F10x.c
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

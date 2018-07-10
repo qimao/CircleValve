@@ -1,0 +1,22 @@
+--cpu Cortex-M3
+".\objects\main.o"
+".\objects\led.o"
+".\objects\thread_led.o"
+".\objects\iwdg.o"
+".\objects\thread_usart.o"
+".\objects\crc.o"
+".\objects\valve.o"
+"D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib"
+".\objects\rtx_conf_cm.o"
+".\objects\misc.o"
+".\objects\stm32f10x_gpio.o"
+".\objects\stm32f10x_iwdg.o"
+".\objects\stm32f10x_rcc.o"
+".\objects\stm32f10x_usart.o"
+".\objects\gpio_stm32f10x.o"
+".\objects\startup_stm32f10x_md.o"
+".\objects\system_stm32f10x.o"
+--strict --scatter ".\Objects\CircleValve.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\CircleValve.map" -o .\Objects\CircleValve.axf
